@@ -6,9 +6,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./diun:/data
     environment:
-      - TZ=America/Chicago
-      - DIUN_PROVIDERS_DOCKER=true
-      - DIUN_WATCH_WORKERS=20
-      - DIUN_WATCH_SCHEDULE= 0 */6 * * *
+      - TZ=${TZ}
+      - DIUN_PROVIDERS_DOCKER=${DIUN_PROVIDERS_DOCKER}
+      - DIUN_WATCH_WORKERS=${DIUN_WATCH_WORKERS}
+      - DIUN_WATCH_SCHEDULE=${DIUN_WATCH_SCHEDULE}
       - DIUN_NOTIF_DISCORD_WEBHOOKURL=${DIUN_DISCORD_WEBHOOK}
     restart: unless-stopped
