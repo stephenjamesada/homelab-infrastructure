@@ -1,0 +1,78 @@
+networks:
+  proxy:
+    external: true
+    name: "proxy"
+  stephen_default:
+    external: true
+    name: "stephen_default"
+
+services:
+  grafana:
+
+    cap_drop:
+      - "AUDIT_CONTROL"
+      - "BLOCK_SUSPEND"
+      - "DAC_READ_SEARCH"
+      - "IPC_LOCK"
+      - "IPC_OWNER"
+      - "LEASE"
+      - "LINUX_IMMUTABLE"
+      - "MAC_ADMIN"
+      - "MAC_OVERRIDE"
+      - "NET_ADMIN"
+      - "NET_BROADCAST"
+      - "SYSLOG"
+      - "SYS_ADMIN"
+      - "SYS_BOOT"
+      - "SYS_MODULE"
+      - "SYS_NICE"
+      - "SYS_PACCT"
+      - "SYS_PTRACE"
+      - "SYS_RAWIO"
+      - "SYS_RESOURCE"
+      - "SYS_TIME"
+      - "SYS_TTY_CONFIG"
+      - "WAKE_ALARM"
+
+    container_name: "grafana"
+
+    entrypoint:
+      - "/run.sh"
+
+    environment:
+      - "PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "GF_PATHS_CONFIG=/etc/grafana/grafana.ini"
+      - "GF_PATHS_DATA=/var/lib/grafana"
+      - "GF_PATHS_HOME=/usr/share/grafana"
+      - "GF_PATHS_LOGS=/var/log/grafana"
+      - "GF_PATHS_PLUGINS=/var/lib/grafana/plugins"
+      - "GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
+
+    expose:
+      - "3000/tcp"
+
+    hostname: "d4f18145fcbf"
+
+    image: "grafana/grafana:latest"
+
+    ipc: "private"
+
+    labels:
+      maintainer: "Grafana Labs <hello@grafana.com>"
+      org.opencontainers.image.source: "https://github.com/grafana/grafana"
+
+    logging:
+      driver: "json-file"
+      options: {}
+
+    mac_address: "22:9a:c8:73:5e:19"
+
+    networks:
+      - "proxy"
+      - "stephen_default"
+
+    user: "472"
+
+    working_dir: "/usr/share/grafana"
+
+version: "3.6"
