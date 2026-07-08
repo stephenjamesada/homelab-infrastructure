@@ -10,5 +10,5 @@ services:
       - DIUN_PROVIDERS_DOCKER=true
       - DIUN_WATCH_WORKERS=20
       - DIUN_WATCH_SCHEDULE= 0 */6 * * *
-      - DIUN_NOTIF_DISCORD_WEBHOOKURL=https://discord.com/api/webhooks/1524155311600959579/d3vZmkNVLbRdtyBOid1A8zQRsjuHcagTcYS44j8f7xroD1_rtUXh2jQ4uysvElhW6TaX
+      - DIUN_NOTIF_DISCORD_WEBHOOKURL=${DIUN_DISCORD_WEBHOOK}
     restart: unless-stopped
